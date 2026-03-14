@@ -4632,3 +4632,8 @@ const AudioManager = (() => {
 // dopo che è stato definito completamente.
 // =========================================================
 AudioManager.init();
+
+return { init }; 
+})(); 
+
+Game.init();
