@@ -4459,7 +4459,6 @@ const Game = (() => {
 
 })();
 
-// ── INIT on page load ──
 window.addEventListener('load', () => {
   // Version badge
   const badge = document.getElementById('version-badge');
@@ -4475,42 +4474,24 @@ window.addEventListener('load', () => {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(() => {});
   }
-
-  // Audio system
-  AudioManager.init();
 });
 
 // ══════════════════════════════════════════════════════════════
 // AUDIO MANAGER
 // Gestisce track-1.mp3 (musica base) e track-2.mp3 (guerra)
-// con fade in / fade out fluidi, senza scatti.
-//
-// Posiziona i file nella stessa cartella di index.html:
-//   track-1.mp3  →  musica principale (loop)
-//   track-2.mp3  →  musica battaglia / guerra (loop)
-//
-// Cambio di stato:
-//   startGame / loadGame      → playMain()
-//   showWarConfirmation       → playWar()      (già dalla pianificazione)
-//   showBattleAnimation       → playWar()      (ridondante ma sicuro)
-//   Continua post-battaglia   → playMainFromWar()
-//   Ritira le truppe          → playMainFromWar()
-//   Ritirata in battle        → playMainFromWar()
-//   Coup overlay              → nessun cambio (non è guerra)
 // ══════════════════════════════════════════════════════════════
 const AudioManager = (() => {
 
-  const FADE_IN_MS  = 1800;   // durata fade in  (ms)
-  const FADE_OUT_MS = 1200;   // durata fade out (ms)
-  const MAIN_VOL    = 0.55;   // volume massimo track-1
-  const WAR_VOL     = 0.70;   // volume massimo track-2
+  const FADE_IN_MS  = 1800;
+  const FADE_OUT_MS = 1200;
+  const MAIN_VOL    = 0.55;
+  const WAR_VOL     = 0.70;
 
   let track1    = null;
   let track2    = null;
   let _warActive = false;
   let _muted     = false;
 
-  // ── Crea elemento Audio ────────────────────────────────────
   function createAudio(src) {
     const a = new Audio();
     a.src     = src;
@@ -4521,7 +4502,6 @@ const AudioManager = (() => {
     return a;
   }
 
-  // ── Fade in: porta il volume da 0 a targetVol in durationMs ─
   function fadeIn(audio, targetVol, durationMs, onDone) {
     if (!audio || _muted) { if (onDone) onDone(); return; }
     clearInterval(audio._fadeTimer);
@@ -4546,7 +4526,6 @@ const AudioManager = (() => {
     }, stepMs);
   }
 
-  // ── Fade out: porta il volume a 0 in durationMs, poi pause ──
   function fadeOut(audio, durationMs, onDone) {
     if (!audio) { if (onDone) onDone(); return; }
     clearInterval(audio._fadeTimer);
@@ -4577,7 +4556,6 @@ const AudioManager = (() => {
     }, stepMs);
   }
 
-  // ── Pulsante mute (🔊/🔇) in basso a sinistra ─────────────
   function buildMuteButton() {
     if (document.getElementById('audio-toggle')) return;
     const btn = document.createElement('button');
@@ -4600,7 +4578,6 @@ const AudioManager = (() => {
       btn.style.opacity = _muted ? '0.25' : '0.45';
 
       if (_muted) {
-        // Silenzia subito entrambe le tracce
         [track1, track2].forEach(t => {
           if (!t) return;
           clearInterval(t._fadeTimer);
@@ -4608,7 +4585,6 @@ const AudioManager = (() => {
           t.pause();
         });
       } else {
-        // Riprendi la traccia corretta
         if (_warActive) fadeIn(track2, WAR_VOL, FADE_IN_MS);
         else            fadeIn(track1, MAIN_VOL, FADE_IN_MS);
       }
@@ -4617,24 +4593,17 @@ const AudioManager = (() => {
     document.body.appendChild(btn);
   }
 
-  // ══════════════════════════════════════════════
-  // API PUBBLICA
-  // ══════════════════════════════════════════════
-
-  /** Chiamato una volta al caricamento pagina */
   function init() {
-    track1 = createAudio('track-1.mp3');
-    track2 = createAudio('track-2.mp3');
-    // Precarica entrambe in silenzio
-    track1.load();
-    track2.load();
+    // I file audio sono commentati per non causare errori 404 finché non li carichi
+    // track1 = createAudio('track-1.mp3');
+    // track2 = createAudio('track-2.mp3');
+    // track1.load();
+    // track2.load();
     buildMuteButton();
   }
 
-  /** Avvia la musica principale (startGame / loadGame) */
   function playMain() {
-    if (_muted || _warActive) return;
-    // Se track2 stava suonando per qualche motivo, spegnila prima
+    if (_muted || _warActive || !track1) return;
     if (track2 && !track2.paused) {
       fadeOut(track2, FADE_OUT_MS, () => fadeIn(track1, MAIN_VOL, FADE_IN_MS));
     } else {
@@ -4642,21 +4611,24 @@ const AudioManager = (() => {
     }
   }
 
-  /** Passa alla musica di guerra (showWarConfirmation / showBattleAnimation) */
   function playWar() {
-    if (_warActive) return;   // già in modalità guerra — nessun doppio fade
+    if (_warActive || _muted || !track2) return;
     _warActive = true;
-    if (_muted) return;
     fadeOut(track1, FADE_OUT_MS, () => fadeIn(track2, WAR_VOL, FADE_IN_MS));
   }
 
-  /** Torna alla musica principale dopo la guerra (Continua / Ritira) */
   function playMainFromWar() {
-    if (!_warActive) return;  // non eravamo in guerra — non fare nulla
+    if (!_warActive || _muted || !track1) return;
     _warActive = false;
-    if (_muted) return;
     fadeOut(track2, FADE_OUT_MS, () => fadeIn(track1, MAIN_VOL, FADE_IN_MS));
   }
 
   return { init, playMain, playWar, playMainFromWar };
 })();
+
+// =========================================================
+// INIZIALIZZAZIONE CORRETTA
+// L'audio manager deve essere inizializzato QUI, 
+// dopo che è stato definito completamente.
+// =========================================================
+AudioManager.init();
