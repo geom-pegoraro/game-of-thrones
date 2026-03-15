@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <meta name="description" content="Iron & Alliances – Strategia RPG nel mondo di Game of Thrones" />
+  <title>Iron & Alliances</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2.1.0" />
+</head>
+<body>
+
+<!-- SCREEN 1: SPLASH -->
+<div id="screen-splash" class="screen active">
+  <div class="splash-bg"></div>
+  <div class="splash-content">
+    <div class="crown-icon">♛</div>
+    <h1 class="game-title">Iron &amp; Alliances</h1>
+    <p class="game-subtitle">Il Trono di Spade ti aspetta</p>
+    <div class="sigil-row">
+      <span>🐺</span><span>🦁</span><span>🐉</span><span>🦌</span><span>🌹</span><span>🐙</span>
+    </div>
+    <button class="btn-primary" onclick="Game.showCharacterSelect()">Inizia la Partita</button>
+    <button class="btn-secondary" onclick="Game.loadGame()">Carica Partita</button>
+  </div>
+</div>
+
+<!-- SCREEN 2: CHARACTER SELECT -->
+<div id="screen-char-select" class="screen">
+  <div class="screen-header">
+    <h2 class="section-title">Scegli il tuo Destino</h2>
+    <p class="section-sub">Chi siederai sul Trono di Spade?</p>
+  </div>
+  <div id="char-grid" class="char-grid"></div>
+</div>
+
+<!-- SCREEN 3: PROLOGUE -->
+<div id="screen-prologue" class="screen">
+  <div class="scroll-container">
+    <div class="scroll-paper">
+      <div class="scroll-ornament top">⚜</div>
+      <h3 id="prologue-title">Prologo</h3>
+      <div id="prologue-text" class="scroll-text"></div>
+      <div class="scroll-ornament bottom">⚜</div>
+    </div>
+    <button class="btn-primary" onclick="Game.startGame()">Il tuo destino inizia ora</button>
+  </div>
+</div>
+
+<!-- SCREEN 4: MAIN GAME -->
+<div id="screen-game" class="screen">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="char-info">
+      <span id="hud-char-icon" class="char-icon-small"></span>
+      <span id="hud-char-name" class="char-name-small"></span>
+    </div>
+    <div class="turn-counter">
+      <span class="turn-label">Turno</span>
+      <span id="hud-turn" class="turn-num">1</span>
+    </div>
+    <button id="btn-diplo" class="btn-diplo" onclick="Game.toggleDiplomacy()">⚔ Diplomazia</button>
+  </div>
+
+  <!-- RESOURCE GAUGES -->
+  <div class="resource-gauges">
+
+    <div class="gauge-wrap" title="Tesoro">
+      <svg class="gauge-svg" viewBox="0 0 44 44">
+        <circle class="gauge-track" cx="22" cy="22" r="18"/>
+        <circle id="bar-gold" class="gauge-fill gold-fill" cx="22" cy="22" r="18"
+                stroke-dasharray="113.1" stroke-dashoffset="56.55"/>
+      </svg>
+      <span class="gauge-icon">💰</span>
+      <span id="val-gold" class="gauge-val">50</span>
+    </div>
+
+    <div class="gauge-wrap" title="Fede">
+      <svg class="gauge-svg" viewBox="0 0 44 44">
+        <circle class="gauge-track" cx="22" cy="22" r="18"/>
+        <circle id="bar-faith" class="gauge-fill faith-fill" cx="22" cy="22" r="18"
+                stroke-dasharray="113.1" stroke-dashoffset="56.55"/>
+      </svg>
+      <span class="gauge-icon">✝</span>
+      <span id="val-faith" class="gauge-val">50</span>
+    </div>
+
+    <div class="gauge-wrap" title="Popolo">
+      <svg class="gauge-svg" viewBox="0 0 44 44">
+        <circle class="gauge-track" cx="22" cy="22" r="18"/>
+        <circle id="bar-people" class="gauge-fill people-fill" cx="22" cy="22" r="18"
+                stroke-dasharray="113.1" stroke-dashoffset="56.55"/>
+      </svg>
+      <span class="gauge-icon">👥</span>
+      <span id="val-people" class="gauge-val">50</span>
+    </div>
+
+    <div class="gauge-wrap" title="Esercito">
+      <svg class="gauge-svg" viewBox="0 0 44 44">
+        <circle class="gauge-track" cx="22" cy="22" r="18"/>
+        <circle id="bar-army" class="gauge-fill army-fill" cx="22" cy="22" r="18"
+                stroke-dasharray="113.1" stroke-dashoffset="56.55"/>
+      </svg>
+      <span class="gauge-icon">⚔</span>
+      <span id="val-army" class="gauge-val">50</span>
+    </div>
+
+    <div class="gauge-wrap" title="Potere">
+      <svg class="gauge-svg" viewBox="0 0 44 44">
+        <circle class="gauge-track" cx="22" cy="22" r="18"/>
+        <circle id="bar-power" class="gauge-fill power-fill" cx="22" cy="22" r="18"
+                stroke-dasharray="113.1" stroke-dashoffset="56.55"/>
+      </svg>
+      <span class="gauge-icon">👑</span>
+      <span id="val-power" class="gauge-val">50</span>
+    </div>
+
+  </div>
+
+  <!-- CARD AREA -->
+  <div class="card-area">
+    <div id="card-stack" class="card-stack">
+      <div class="card-ghost card-ghost-2"></div>
+      <div class="card-ghost card-ghost-1"></div>
+      <div id="main-card" class="main-card">
+        <div class="card-inner">
+          <div class="card-header">
+            <span id="card-speaker-icon" class="speaker-icon"></span>
+            <div class="card-header-text">
+              <span id="card-speaker-name" class="speaker-name"></span>
+              <span id="card-speaker-role" class="speaker-role"></span>
+            </div>
+          </div>
+          <div id="card-portrait" class="card-portrait"></div>
+          <div id="card-text" class="card-text"></div>
+          <div id="card-effects-preview" class="effects-preview"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHOICE BUTTONS -->
+    <div class="choice-area">
+      <button id="btn-left" class="choice-btn choice-left" onclick="Game.makeChoice('left')">
+        <span class="choice-arrow">◄</span>
+        <span id="choice-left-text" class="choice-text">Rifiuta</span>
+      </button>
+      <button id="btn-right" class="choice-btn choice-right" onclick="Game.makeChoice('right')">
+        <span id="choice-right-text" class="choice-text">Accetta</span>
+        <span class="choice-arrow">►</span>
+      </button>
+    </div>
+    <p class="swipe-hint">← scorri o usa i pulsanti →</p>
+  </div>
+
+  <!-- OBJECTIVE BAR -->
+  <div id="objective-bar" class="objective-bar">
+    <span class="obj-icon">📜</span>
+    <span id="objective-text" class="obj-text"></span>
+  </div>
+</div>
+
+<!-- DIPLOMACY PANEL (overlay) -->
+<div id="diplomacy-panel" class="diplo-panel hidden">
+  <div class="diplo-inner">
+    <div class="diplo-header">
+      <h3>⚔ Tavolo del Consiglio</h3>
+      <button onclick="Game.toggleDiplomacy()" class="btn-close">✕</button>
+    </div>
+    <div id="diplo-houses" class="diplo-houses"></div>
+    <div class="diplo-actions">
+      <h4>Invia un Corvo</h4>
+      <div id="raven-select" class="raven-select"></div>
+      <div id="raven-actions" class="raven-actions hidden">
+        <button class="btn-raven" onclick="Game.ravenAction('alliance')">🤝 Proponi Alleanza</button>
+        <button class="btn-raven" onclick="Game.ravenAction('war')">⚔ Dichiara Guerra</button>
+        <button class="btn-raven" onclick="Game.ravenAction('tribute')">💰 Invia Tributo</button>
+        <button class="btn-raven btn-cancel" onclick="Game.clearRaven()">Annulla</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GAME OVER / ENDING SCREEN -->
+<div id="screen-ending" class="screen">
+  <div class="ending-content">
+    <div id="ending-icon" class="ending-icon"></div>
+    <h2 id="ending-title" class="ending-title"></h2>
+    <p id="ending-text" class="ending-text"></p>
+    <div id="ending-stats" class="ending-stats"></div>
+    <button class="btn-primary" onclick="Game.restart()">Ricomincia</button>
+  </div>
+</div>
+
+<!-- NOTIFICATION TOAST -->
+<div id="toast" class="toast hidden"></div>
+
+<!-- VERSION BADGE -->
+<div id="version-badge" class="version-badge">v2.1.0</div>
+
+<!-- Cache bust -->
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(regs => {
+      regs.forEach(reg => reg.unregister());
+    });
+    caches.keys().then(keys => {
+      keys.forEach(key => {
+        if (!key.includes('v2.1.0')) caches.delete(key);
+      });
+    });
+  }
+</script>
+<script src="game.js?v=2.1.0"></script>
+</body>
+</html>
