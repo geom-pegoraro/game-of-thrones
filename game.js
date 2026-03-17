@@ -617,37 +617,37 @@ const Game = (() => {
   // DATA — GREAT HOUSES
   // ══════════════════════════════════════════════
   const HOUSES_DEF = [
-    { id: 'Stark',     name: 'Stark',    icon: '🐺', crest: 'Stark.png',     region: 'Nord',               baseArmy: 90,
+    { id: 'Stark',     name: 'Stark',    icon: '🐺', crest: 'images/houses/Stark.png',     region: 'Nord',               baseArmy: 90,
       allianceReq: { people: 55, faith: 45 },
       allianceHint: 'Gli Stark valorizzano l\'onore e la lealtà del popolo. Non si fidano di chi ha le mani sporche di sangue o il favore dei nobili senza quello del popolo.' },
-    { id: 'Lannister', name: 'Lannister',icon: '🦁', crest: 'Lannister.png', region: 'Castel Granito',     baseArmy: 95,
+    { id: 'Lannister', name: 'Lannister',icon: '🦁', crest: 'images/houses/Lannister.png', region: 'Castel Granito',     baseArmy: 95,
       allianceReq: { gold: 70, power: 55 },
       allianceHint: 'I Lannister pagano i loro debiti, e si aspettano ricchezza da chi cerca la loro alleanza. Senza oro e influenza politica, la proposta non vale nemmeno la pergamena su cui è scritta.' },
-    { id: 'Tyrell',    name: 'Tyrell',   icon: '🌹', crest: 'Tyrell.png',    region: 'Altogarden',         baseArmy: 95,
+    { id: 'Tyrell',    name: 'Tyrell',   icon: '🌹', crest: 'images/houses/Tyrell.png',    region: 'Altogarden',         baseArmy: 95,
       allianceReq: { gold: 55, people: 60 },
       allianceHint: 'I Tyrell cercano alleati prosperi e amati dal popolo. Una casata povera o impopolare non porta nulla al tavolo delle trattative di Altogarden.' },
-    { id: 'Baratheon', name: 'Baratheon',icon: '🦌', crest: 'Baratheon.png', region: 'Capo della Tempesta',baseArmy: 80,
+    { id: 'Baratheon', name: 'Baratheon',icon: '🦌', crest: 'images/houses/Baratheon.png', region: 'Capo della Tempesta',baseArmy: 80,
       allianceReq: { army: 50, power: 45 },
       allianceHint: 'I Baratheon rispettano la forza militare e l\'autorità politica. Chi non ha truppe sufficienti né influenza reale è considerato troppo debole per essere un alleato affidabile.' },
-    { id: 'Tully',     name: 'Tully',    icon: '🐟', crest: 'Tully.png',    region: 'Acque del Nera',     baseArmy: 70,
+    { id: 'Tully',     name: 'Tully',    icon: '🐟', crest: 'images/houses/Tully.png',    region: 'Acque del Nera',     baseArmy: 70,
       allianceReq: { faith: 50, people: 50 },
       allianceHint: 'I Tully credono nella Fede e nel bene del popolo. Chi ha perso il favore della gente o della chiesa difficilmente otterrà la loro fiducia.' },
-    { id: 'Martell',   name: 'Martell',  icon: '☀️', crest: 'Martell.png',  region: 'Dorne',              baseArmy: 75,
+    { id: 'Martell',   name: 'Martell',  icon: '☀️', crest: 'images/houses/Martell.png',  region: 'Dorne',              baseArmy: 75,
       allianceReq: { power: 50, army: 45 },
       allianceHint: 'Dorne non dimentica i torti e non si allea con i deboli. Serve influenza e una forza militare rispettabile per sedere al tavolo dei Martell.' },
-    { id: 'Greyjoy',   name: 'Greyjoy',  icon: '🐙', crest: 'Greyjoy.png',  region: 'Isole di Ferro',     baseArmy: 78,
+    { id: 'Greyjoy',   name: 'Greyjoy',  icon: '🐙', crest: 'images/houses/Greyjoy.png',  region: 'Isole di Ferro',     baseArmy: 78,
       allianceReq: { army: 55 },
       allianceHint: 'Gli uomini del Ferro rispettano solo la forza. Un alleato con pochi soldati non merita nemmeno una risposta dal Castello Pyke.' },
-    { id: 'Frey',      name: 'Frey',     icon: '🌉', crest: 'Frey.png',     region: 'Tridente',           baseArmy: 60,
+    { id: 'Frey',      name: 'Frey',     icon: '🌉', crest: 'images/houses/Frey.png',     region: 'Tridente',           baseArmy: 60,
       allianceReq: { gold: 45 },
       allianceHint: 'I Frey sono venali e pragmatici. Senza un adeguato compenso in oro, Walder Frey non muoverà un dito per nessuno.' },
-    { id: 'Bolton',    name: 'Bolton',    icon: '🩸', crest: 'Bolton.png',   region: 'Il Nord (Forte Terrore)',  baseArmy: 85,
+    { id: 'Bolton',    name: 'Bolton',    icon: '🩸', crest: 'images/houses/Bolton.png',   region: 'Il Nord (Forte Terrore)',  baseArmy: 85,
       allianceReq: { army: 60, power: 50 },
       allianceHint: 'I Bolton rispettano solo la forza bruta e il terrore. Senza un esercito temibile e influenza politica solida, non considerano nessuno degno di alleanza.' },
-    { id: 'Targaryen', name: 'Targaryen', icon: '🐉', crest: 'Targaryen.png', region: 'Dragonstone / Esilio',       baseArmy: 95,
+    { id: 'Targaryen', name: 'Targaryen', icon: '🐉', crest: 'images/houses/Targaryen.png', region: 'Dragonstone / Esilio',       baseArmy: 95,
       allianceReq: { army: 55, power: 60 },
       allianceHint: "I Targaryen riconoscono solo chi ha potere e forza militare degni del Trono di Spade. Senza entrambi, la proposta è un insulto al sangue del drago." },
-    { id: 'Hightower', name: 'Hightower', icon: '🕯️', crest: 'Hightower.png', region: 'Vecchia Città (Oldtown)',    baseArmy: 85,
+    { id: 'Hightower', name: 'Hightower', icon: '🕯️', crest: 'images/houses/Hightower.png', region: 'Vecchia Città (Oldtown)',    baseArmy: 85,
       allianceReq: { gold: 60, faith: 55 },
       allianceHint: "Gli Hightower sono signori di Oldtown e protettori della Cittadella. Rispettano oro e fede — senza entrambi non aprono nemmeno le porte della loro alta torre." },
   ];
@@ -4169,16 +4169,16 @@ const Game = (() => {
     grid.appendChild(backWrapper);
 
     const HOUSE_GROUPS = [
-      { id: 'Stark',     name: 'Casa Stark',       icon: '🐺', crest: 'Stark.png',     region: 'Il Nord',              chars: ['jon','sansa','arya','robb','ned'],              color: 'rgba(148,163,184,0.15)', border: 'rgba(148,163,184,0.4)' },
-      { id: 'Lannister', name: 'Casa Lannister',   icon: '🦁', crest: 'Lannister.png', region: 'Castel Granito',        chars: ['cersei','tyrion','jaime','tywin'],             color: 'rgba(201,168,76,0.12)',  border: 'rgba(201,168,76,0.45)' },
-      { id: 'Targaryen', name: 'Casa Targaryen',   icon: '🐉', crest: 'Targaryen.png', region: 'Esilio / Dragonstone',  chars: ['daenerys','viserys','rhaenyra','aegon_t'],     color: 'rgba(220,38,38,0.12)',   border: 'rgba(220,38,38,0.45)'  },
-      { id: 'Baratheon', name: 'Casa Baratheon',   icon: '🦌', crest: 'Baratheon.png', region: 'Capo della Tempesta',   chars: ['stannis','melisandre','davos'],                color: 'rgba(251,191,36,0.12)',  border: 'rgba(251,191,36,0.4)'  },
-      { id: 'Tyrell',    name: 'Casa Tyrell',      icon: '🌹', crest: 'Tyrell.png',    region: 'Altogarden',            chars: ['margaery','olenna'],                           color: 'rgba(74,222,128,0.1)',   border: 'rgba(74,222,128,0.4)'  },
-      { id: 'Martell',   name: 'Casa Martell',     icon: '☀️', crest: 'Martell.png',   region: 'Dorne',                 chars: ['oberyn'],                                     color: 'rgba(251,146,60,0.12)',  border: 'rgba(251,146,60,0.4)'  },
-      { id: 'Greyjoy',   name: 'Casa Greyjoy',     icon: '🐙', crest: 'Greyjoy.png',   region: 'Isole di Ferro',        chars: ['theon'],                                      color: 'rgba(99,102,241,0.1)',   border: 'rgba(99,102,241,0.4)'  },
-      { id: 'Tully',     name: 'Casa Tully',       icon: '🐟', crest: 'Tully.png',     region: 'Acque del Nera',        chars: ['catelyn'],                                    color: 'rgba(59,130,246,0.1)',   border: 'rgba(59,130,246,0.4)'  },
-      { id: 'Bolton',    name: 'Casa Bolton',      icon: '🩸', crest: 'Bolton.png',    region: 'Forte Terrore',         chars: ['roose','ramsay'],                             color: 'rgba(127,29,29,0.15)',   border: 'rgba(239,68,68,0.4)'   },
-      { id: 'Hightower', name: 'Casa Hightower',   icon: '🕯️', crest: 'Hightower.png', region: 'Oldtown',               chars: ['otto','alicent'],                             color: 'rgba(251,191,36,0.1)',   border: 'rgba(251,191,36,0.35)' },
+      { id: 'Stark',     name: 'Casa Stark',       icon: '🐺', crest: 'images/houses/Stark.png',     region: 'Il Nord',              chars: ['jon','sansa','arya','robb','ned'],              color: 'rgba(148,163,184,0.15)', border: 'rgba(148,163,184,0.4)' },
+      { id: 'Lannister', name: 'Casa Lannister',   icon: '🦁', crest: 'images/houses/Lannister.png', region: 'Castel Granito',        chars: ['cersei','tyrion','jaime','tywin'],             color: 'rgba(201,168,76,0.12)',  border: 'rgba(201,168,76,0.45)' },
+      { id: 'Targaryen', name: 'Casa Targaryen',   icon: '🐉', crest: 'images/houses/Targaryen.png', region: 'Esilio / Dragonstone',  chars: ['daenerys','viserys','rhaenyra','aegon_t'],     color: 'rgba(220,38,38,0.12)',   border: 'rgba(220,38,38,0.45)'  },
+      { id: 'Baratheon', name: 'Casa Baratheon',   icon: '🦌', crest: 'images/houses/Baratheon.png', region: 'Capo della Tempesta',   chars: ['stannis','melisandre','davos'],                color: 'rgba(251,191,36,0.12)',  border: 'rgba(251,191,36,0.4)'  },
+      { id: 'Tyrell',    name: 'Casa Tyrell',      icon: '🌹', crest: 'images/houses/Tyrell.png',    region: 'Altogarden',            chars: ['margaery','olenna'],                           color: 'rgba(74,222,128,0.1)',   border: 'rgba(74,222,128,0.4)'  },
+      { id: 'Martell',   name: 'Casa Martell',     icon: '☀️', crest: 'images/houses/Martell.png',   region: 'Dorne',                 chars: ['oberyn'],                                     color: 'rgba(251,146,60,0.12)',  border: 'rgba(251,146,60,0.4)'  },
+      { id: 'Greyjoy',   name: 'Casa Greyjoy',     icon: '🐙', crest: 'images/houses/Greyjoy.png',   region: 'Isole di Ferro',        chars: ['theon'],                                      color: 'rgba(99,102,241,0.1)',   border: 'rgba(99,102,241,0.4)'  },
+      { id: 'Tully',     name: 'Casa Tully',       icon: '🐟', crest: 'images/houses/Tully.png',     region: 'Acque del Nera',        chars: ['catelyn'],                                    color: 'rgba(59,130,246,0.1)',   border: 'rgba(59,130,246,0.4)'  },
+      { id: 'Bolton',    name: 'Casa Bolton',      icon: '🩸', crest: 'images/houses/Bolton.png',    region: 'Forte Terrore',         chars: ['roose','ramsay'],                             color: 'rgba(127,29,29,0.15)',   border: 'rgba(239,68,68,0.4)'   },
+      { id: 'Hightower', name: 'Casa Hightower',   icon: '🕯️', crest: 'images/houses/Hightower.png', region: 'Oldtown',               chars: ['otto','alicent'],                             color: 'rgba(251,191,36,0.1)',   border: 'rgba(251,191,36,0.35)' },
       { id: 'None',      name: 'Senza Casa',       icon: '🪙', crest: null,            region: 'Westeros',              chars: ['littlefinger','bronn','tormund','jorah','sandor','ygritte','brienne'], color: 'rgba(120,120,120,0.1)', border: 'rgba(120,120,120,0.35)'},
     ];
 
@@ -4228,7 +4228,7 @@ const Game = (() => {
       // Character portrait: try <id>.png, fallback to ? if missing
       const iconHtml = `
         <div style="width:3rem;height:3rem;border-radius:50%;overflow:hidden;border:2px solid rgba(201,168,76,0.35);display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);margin:0 auto">
-          <img src="${c.id}.png" alt="${c.name}"
+          <img src="images/characters/${c.id}.png" alt="${c.name}"
             style="width:100%;height:100%;object-fit:cover"
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <span style="display:none;font-size:1.6rem;width:100%;height:100%;align-items:center;justify-content:center">❓</span>
@@ -4353,7 +4353,7 @@ const Game = (() => {
           <!-- Ritratto + nome -->
           <div style="text-align:center;margin-bottom:1.2rem">
             <div style="line-height:1;margin-bottom:0.6rem;display:flex;align-items:center;justify-content:center">
-              <img id="char-portrait-img-${char.id}" src="${char.id}.png" alt="${char.name}"
+              <img id="char-portrait-img-${char.id}" src="images/characters/${char.id}.png" alt="${char.name}"
                 style="width:5rem;height:5rem;object-fit:cover;border-radius:50%;border:2px solid rgba(201,168,76,0.4);filter:drop-shadow(0 0 16px rgba(201,168,76,0.35))"
                 onerror="this.style.display='none';document.getElementById('char-portrait-fallback-${char.id}').style.display='flex'">
               <span id="char-portrait-fallback-${char.id}" style="display:none;width:5rem;height:5rem;border-radius:50%;border:2px solid rgba(201,168,76,0.2);align-items:center;justify-content:center;font-size:2.5rem;background:rgba(201,168,76,0.06)">❓</span>
@@ -4700,7 +4700,7 @@ const Game = (() => {
 
     const hudIcon = document.getElementById('hud-char-icon');
     if (hudIcon) {
-      hudIcon.innerHTML = `<img src="${char.id}.png" alt="${char.name}"
+      hudIcon.innerHTML = `<img src="images/characters/${char.id}.png" alt="${char.name}"
         style="width:1.8rem;height:1.8rem;object-fit:cover;border-radius:50%;border:1px solid rgba(201,168,76,0.4);vertical-align:middle"
         onerror="this.outerHTML='<span style=\\'font-size:1.4rem\\'>${char.icon}</span>'">`;
     }
@@ -8072,14 +8072,14 @@ const Game = (() => {
       <div style="position:absolute;inset:0;z-index:0;overflow:hidden;">
         <!-- Player side left -->
         <div style="position:absolute;inset:0;width:50%;left:0;">
-          <img src="${_tbCharId}_bg.png" style="width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0.55"
-               onerror="this.src='${_tbCharId}.png';this.onerror=null">
+          <img src="images/characters/${_tbCharId}_bg.png" style="width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0.55"
+               onerror="this.src='images/characters/${_tbCharId}.png';this.onerror=null">
           <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.85) 100%)"></div>
         </div>
         <!-- King side right -->
         <div style="position:absolute;inset:0;width:50%;right:0;left:auto;">
-          <img src="${_tbKingId}_bg.png" style="width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0.55"
-               onerror="this.src='${_tbKingId}.png';this.onerror=this.src='${_tbKingHouseCrest||''}';this.style.objectFit='contain';this.style.opacity='0.35';this.onerror=null">
+          <img src="images/characters/${_tbKingId}_bg.png" style="width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0.55"
+               onerror="this.src='images/characters/${_tbKingId}.png';this.onerror=this.src='${_tbKingHouseCrest||''}';this.style.objectFit='contain';this.style.opacity='0.35';this.onerror=null">
           <div style="position:absolute;inset:0;background:linear-gradient(to left,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.85) 100%)"></div>
         </div>
         <!-- Central fade -->
@@ -8088,7 +8088,7 @@ const Game = (() => {
       </div>`;
     const _tbPlayerPortrait = `
       <div style="width:3rem;height:3rem;border-radius:50%;border:2px solid rgba(74,222,128,0.5);overflow:hidden;display:inline-flex;align-items:center;justify-content:center;background:rgba(74,222,128,0.06);animation:tb-pulse-gold 2s ease infinite">
-        <img id="tb-portrait-player" src="${_tbCharId}.png" alt="${_tbCharFirstName}"
+        <img id="tb-portrait-player" src="images/characters/${_tbCharId}.png" alt="${_tbCharFirstName}"
           style="width:100%;height:100%;object-fit:cover"
           onerror="this.style.display='none';document.getElementById('tb-portrait-fb').style.display='flex'">
         <span id="tb-portrait-fb" style="display:none;font-size:1.8rem;animation:tb-pulse-gold 2s ease infinite">${charIcon}</span>
@@ -10144,9 +10144,9 @@ const Game = (() => {
     // ── Sfondi cinematografici ──
     // Lato giocatore: <charId>_bg.png → fallback <charId>.png
     // Lato nemico casata: <houseId>_bg.png → fallback stemma casata
-    const playerBgId  = `${charId}_bg.png`;
-    const playerPortraitSrc = `${charId}.png`;
-    const enemyBgSrc  = `${houseId}_bg.png`;
+    const playerBgId  = `images/characters/${charId}_bg.png`;
+    const playerPortraitSrc = `images/characters/${charId}.png`;
+    const enemyBgSrc  = `images/houses/${houseId}_bg.png`;
     const enemyCrestSrc = h.crest || null;
 
     // Split background: left = player, right = enemy, center fade
@@ -10305,10 +10305,10 @@ const Game = (() => {
 
     const _charId = state.character?.id || '';
     const _houseBgConfig = {
-      playerSrc:    `${_charId}.png`,
-      playerBgSrc:  `${_charId}_bg.png`,
+      playerSrc:    `images/characters/${_charId}.png`,
+      playerBgSrc:  `images/characters/${_charId}_bg.png`,
       enemySrc:     h.crest || '',
-      enemyBgSrc:   `${houseId}_bg.png`,
+      enemyBgSrc:   `images/houses/${houseId}_bg.png`,
     };
     showBattleAnimation(playerForce, enemyForce, (won, survived, enemySurvived) => {
       _resolveHouseBattle(houseId, h, won, survived, enemySurvived, playerForce, enemyForce, desertNote, playerInitiated);
